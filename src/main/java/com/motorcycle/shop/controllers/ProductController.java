@@ -3,15 +3,16 @@ package com.motorcycle.shop.controllers;
 import com.motorcycle.shop.models.dtos.ProductDTO;
 import com.motorcycle.shop.models.entities.Product;
 import com.motorcycle.shop.services.ProductService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -31,8 +32,15 @@ public class ProductController {
        return ResponseEntity.ok(productService.findProductByBrandAndColourAndWeightAndPrice(brand, colour, weight, price));
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable long id) {
+        log.info("Product with id " + id + " was deleted.");
+        productService.deleteProductById(id);
+    }
+
     @GetMapping
     public ResponseEntity<List<ProductDTO>> findAllProducts() {
+        log.info("Products retrieved.");
         return ResponseEntity.ok(productService.findAllProducts());
     }
 }

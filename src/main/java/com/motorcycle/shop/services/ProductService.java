@@ -8,4 +8,5 @@ public interface ProductService {
 
     List<ProductDTO> findProductByBrandAndColourAndWeightAndPrice(String brand, String colour, int weight, double price);
     List<ProductDTO> findAllProducts();
+    void deleteProductById(long id);
 }

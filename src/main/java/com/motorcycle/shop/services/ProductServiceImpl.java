@@ -1,6 +1,5 @@
 package com.motorcycle.shop.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.motorcycle.shop.models.dtos.ProductDTO;
 import com.motorcycle.shop.models.entities.Product;
 import com.motorcycle.shop.repositories.ProductRepository;
@@ -14,13 +13,10 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final ObjectMapper objectMapper;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository,
-                              ObjectMapper objectMapper) {
+    public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -38,6 +34,11 @@ public class ProductServiceImpl implements ProductService {
         productRepository.findAll().forEach(product -> fromProductEntityToProductDTO(productDTOList, product));
 
         return productDTOList;
+    }
+
+    @Override
+    public void deleteProductById(long id) {
+        productRepository.deleteById(id);
     }
 
     private void fromProductEntityToProductDTO(List<ProductDTO> productDTOS, Product product) {
