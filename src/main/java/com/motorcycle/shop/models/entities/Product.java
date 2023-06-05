@@ -28,7 +28,7 @@ public class Product {
     private int weight;
     @Column(name = "price")
     private double price;
-    @Column(name = "yearOfManufacture")
+    @Column(name = "year_of_manufacture")
     private Date yearOfManufacture;
     @ManyToMany(mappedBy = "products")
     private Set<Customer> customers;

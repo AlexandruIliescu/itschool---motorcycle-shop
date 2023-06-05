@@ -26,10 +26,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> findProductByBrandAndColourAndWeightAndPrice(String brand, String colour, int weight, double price) {
         List<Product> products = productRepository.findProductByBrandAndColourAndWeightAndPrice(brand, colour, weight, price);
-        List<ProductDTO> productDTOS = new ArrayList<>();
-        products.forEach(product -> fromProductEntityToProductDTO(productDTOS, product));
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        products.forEach(product -> fromProductEntityToProductDTO(productDTOList, product));
 
-        return productDTOS;
+        return productDTOList;
+    }
+
+    @Override
+    public List<ProductDTO> findAllProducts() {
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        productRepository.findAll().forEach(product -> fromProductEntityToProductDTO(productDTOList, product));
+
+        return productDTOList;
     }
 
     private void fromProductEntityToProductDTO(List<ProductDTO> productDTOS, Product product) {

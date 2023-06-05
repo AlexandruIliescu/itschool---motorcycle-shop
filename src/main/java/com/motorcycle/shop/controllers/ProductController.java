@@ -23,11 +23,16 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping("/filter")
     public ResponseEntity<List<ProductDTO>> findProductByBrandAndColourAndWeightAndPrice(@RequestParam (required = false) String brand,
                                                                                          @RequestParam (required = false) String colour,
                                                                                          @RequestParam (required = false) Integer weight,
                                                                                          @RequestParam (required = false) Double price) {
        return ResponseEntity.ok(productService.findProductByBrandAndColourAndWeightAndPrice(brand, colour, weight, price));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> findAllProducts() {
+        return ResponseEntity.ok(productService.findAllProducts());
     }
 }
