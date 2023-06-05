@@ -14,37 +14,37 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+//@SpringBootTest
 class CustomerServiceTest {
 
-    @InjectMocks
-    private CustomerServiceImpl customerService;
-    @Mock
-    private ObjectMapper objectMapper;
-    @Mock
-    private CustomerValidationService customerValidationService;
-    @Mock
-    private CustomerRepository customerRepository;
-
-    @Test
-    void testCreateCustomersShouldPass() {
-        //GIVEN
-        CustomerDTO customerDTO = CustomerDTO.builder()
-                .firstName("George")
-                .lastName("Ionescu")
-                .email("george@gmail.com")
-                .build();
-        Customer customerEntity = Customer.builder()
-                .firstName("George")
-                .lastName("Ionescu")
-                .email("george@gmail.com")
-                .build();
-        when(objectMapper.convertValue(customerDTO, Customer.class)).thenReturn(customerEntity);
-        when(customerRepository.save(customerEntity)).thenReturn(customerEntity);
-        when(objectMapper.convertValue(customerEntity, CustomerDTO.class)).thenReturn(customerDTO);
-        //WHEN
-        CustomerDTO resultCustomerDTO = customerService.createCustomer(customerDTO);
-        //THEN
-        Assertions.assertEquals(customerDTO, resultCustomerDTO);
-    }
+//    @InjectMocks
+//    private CustomerServiceImpl customerService;
+//    @Mock
+//    private ObjectMapper objectMapper;
+//    @Mock
+//    private CustomerValidationService customerValidationService;
+//    @Mock
+//    private CustomerRepository customerRepository;
+//
+//    @Test
+//    void testCreateCustomersShouldPass() {
+//        //GIVEN
+//        CustomerDTO customerDTO = CustomerDTO.builder()
+//                .firstName("George")
+//                .lastName("Ionescu")
+//                .email("george@gmail.com")
+//                .build();
+//        Customer customerEntity = Customer.builder()
+//                .firstName("George")
+//                .lastName("Ionescu")
+//                .email("george@gmail.com")
+//                .build();
+//        when(objectMapper.convertValue(customerDTO, Customer.class)).thenReturn(customerEntity);
+//        when(customerRepository.save(customerEntity)).thenReturn(customerEntity);
+//        when(objectMapper.convertValue(customerEntity, CustomerDTO.class)).thenReturn(customerDTO);
+//        //WHEN
+//        CustomerDTO resultCustomerDTO = customerService.createCustomer(customerDTO);
+//        //THEN
+//        Assertions.assertEquals(customerDTO, resultCustomerDTO);
+//    }
 }

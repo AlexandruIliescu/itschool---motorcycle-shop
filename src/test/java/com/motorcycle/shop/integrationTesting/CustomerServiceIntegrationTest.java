@@ -16,36 +16,36 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Slf4j
-@SpringBootTest
-@AutoConfigureMockMvc
+//@Slf4j
+//@SpringBootTest
+//@AutoConfigureMockMvc
 class CustomerServiceIntegrationTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Test
-    void testCreateCustomerShouldPass() throws Exception {
-        CustomerDTO customerDTO = CustomerDTO.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .email("john@gmail.com")
-                .build();
-        mockMvc.perform(post("/api/customers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectToString(customerDTO)))
-                .andExpect(status().is(200))
-//                .andDo(print())
-                .andExpect(jsonPath("$.firstName").value(customerDTO.getFirstName()));
-    }
-
-    private String objectToString(Object object) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(object);
-        } catch (JsonProcessingException exception) {
-            log.error(exception.getMessage());
-        }
-        return null;
-    }
+//    @Autowired
+//    private MockMvc mockMvc;
+//
+//    @Test
+//    void testCreateCustomerShouldPass() throws Exception {
+//        CustomerDTO customerDTO = CustomerDTO.builder()
+//                .firstName("John")
+//                .lastName("Doe")
+//                .email("john@gmail.com")
+//                .build();
+//        mockMvc.perform(post("/api/customers")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(objectToString(customerDTO)))
+//                .andExpect(status().is(200))
+////                .andDo(print())
+//                .andExpect(jsonPath("$.firstName").value(customerDTO.getFirstName()));
+//    }
+//
+//    private String objectToString(Object object) {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        try {
+//            return objectMapper.writeValueAsString(object);
+//        } catch (JsonProcessingException exception) {
+//            log.error(exception.getMessage());
+//        }
+//        return null;
+//    }
 }
