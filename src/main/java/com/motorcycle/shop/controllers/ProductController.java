@@ -1,10 +1,8 @@
 package com.motorcycle.shop.controllers;
 
 import com.motorcycle.shop.models.dtos.ProductDTO;
-import com.motorcycle.shop.models.entities.Product;
 import com.motorcycle.shop.services.ProductService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +23,11 @@ public class ProductController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<ProductDTO>> findProductByBrandAndColourAndWeightAndPrice(@RequestParam (required = false) String brand,
-                                                                                         @RequestParam (required = false) String colour,
-                                                                                         @RequestParam (required = false) Integer weight,
-                                                                                         @RequestParam (required = false) Double price) {
-       return ResponseEntity.ok(productService.findProductByBrandAndColourAndWeightAndPrice(brand, colour, weight, price));
+    public ResponseEntity<List<ProductDTO>> findProductByBrandAndColourAndWeightAndPrice(@RequestParam(required = false) String brand,
+                                                                                         @RequestParam(required = false) String colour,
+                                                                                         @RequestParam(required = false) Integer weight,
+                                                                                         @RequestParam(required = false) Double price) {
+        return ResponseEntity.ok(productService.findProductByBrandAndColourAndWeightAndPrice(brand, colour, weight, price));
     }
 
     @DeleteMapping("/{id}")
