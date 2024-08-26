@@ -31,7 +31,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> findAllProducts() {
         List<ProductDTO> productDTOList = new ArrayList<>();
-        productRepository.findAll().forEach(product -> fromProductEntityToProductDTO(productDTOList, product));
+        productRepository.findAll()
+                .forEach(product -> fromProductEntityToProductDTO(productDTOList, product));
 
         return productDTOList;
     }
